@@ -19,8 +19,9 @@ import AddArticle from './Article';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-function AdminIndex(props) {
+function AdminIndex() {
     const [collapsed, setCollapsed] = useState(false)
+
     let onCollapse = collapsed => {
         setCollapsed(collapsed)
     };

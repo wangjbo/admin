@@ -8,7 +8,7 @@ const { Option } = Select
 const { TextArea } = Input
 
 
-function AddArticle(props) {
+function AddArticle() {
     const [articleId, setArticleId] = useState(0)  // 文章的ID，如果是0说明是新增加，如果不是0，说明是修改
     const [articleTitle, setArticleTitle] = useState('')   //文章标题
     const [articleContent, setArticleContent] = useState('')  //markdown的编辑内容
