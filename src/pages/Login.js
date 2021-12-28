@@ -38,14 +38,12 @@ function Login(props) {
             url: servcePath.checkLogin,
             data: dataProps,
             withCredentials: true,
-            'Content-Type': 'application/json;charset=UTF-8',
-            "Access-Control-Allow-Credentials": true,
-            "Access-Control-Allow-Headers": "Authorization,Origin, X-Requested-With, Content-Type, Accept",
-            "Access-Control-Allow-Methods": "GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS"
+           
         }).then(
             (res) => {
                 setIsLoading(false)
                 if (res.data.data == '登录成功') {
+                    localStorage.setItem('openId',res.data.openId)
                     props.history.push('/index')
                 } else {
                     message.error('用户名或密码错误')
@@ -80,6 +78,7 @@ function Login(props) {
                         onChange={(e) => {
                             setPassword(e.target.value)
                         }}
+                        onPressEnter={checkLogin}
                     />
                     <br /><br />
                     <Button type='primary' size="large" block onClick={checkLogin}>登录</Button>

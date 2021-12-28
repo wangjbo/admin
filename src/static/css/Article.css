@@ -2,6 +2,7 @@
     font-size:16px !important;
     max-height: 745px;
 }
+
 .show-html{
     padding:10px;
     border:1px solid #ddd;
@@ -15,7 +16,10 @@
 .show-html h1{
     font-size:30px;
 }
-
+.show-html img{
+    display: block;
+    margin: 20px auto;
+}
 .show-html h2{
     font-size:28px;
     border-bottom: 1px solid #cbcbcb;
@@ -51,7 +55,7 @@
     border:1px solid #ddd;
     border-radius: 5px;
     font-size:16px;
-
+    
     background-color: #f0f0f0;
 }
 
@@ -90,6 +94,7 @@
     padding: 10px 10px 10px 30px; 
     background-color: #f8f8f8;
 }
+
 .date-select{
     margin-top:10px;
 }
