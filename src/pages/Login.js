@@ -7,11 +7,11 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import servcePath from '../config/apiUrl';
 import axios from 'axios'
 
-function Login() {
+function Login(props) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    function checkLogin(props) {
+    function checkLogin() {
         setIsLoading(true)
         // 发送axios请求来判断
         if (!username || !password) {
@@ -23,38 +23,38 @@ function Login() {
             username,
             password
         }
-
+        
+        console.log(props)
         setTimeout(() => {
             setIsLoading(false)
-            message.error('连接错误')
+            if(props.history.pathname==='/'){
+                message.error('连接错误')
+            }
         }, 10000);
 
-        try {
-            axios({
-                method: 'post',
-                url: servcePath.checkLogin,
-                data: dataProps,
-                withCredentials: true,
-                'Content-Type': 'application/json;charset=UTF-8',
-                "Access-Control-Allow-Credentials": true,
-                "Access-Control-Allow-Headers": "Authorization,Origin, X-Requested-With, Content-Type, Accept",
-                "Access-Control-Allow-Methods": "GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS"
-            }).then(
-                (res) => {
-                    console.log('res=', res)
-                    setIsLoading(false)
-                    if (res.data == '登录成功') {
-                        props.history.push('/index')
-                    } else {
-                        message.error('用户名或密码错误')
-                    }
+
+        axios({
+            method: 'post',
+            url: servcePath.checkLogin,
+            data: dataProps,
+            withCredentials: true,
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Credentials": true,
+            "Access-Control-Allow-Headers": "Authorization,Origin, X-Requested-With, Content-Type, Accept",
+            "Access-Control-Allow-Methods": "GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS"
+        }).then(
+            (res) => {
+                setIsLoading(false)
+                if (res.data.data == '登录成功') {
+                    props.history.push('/index')
+                } else {
+                    message.error('用户名或密码错误')
                 }
-            )
-        } catch (error) {
-            console.log(error)
-        }
+            }
+        )
+
         // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-        
+
     }
 
     return (
